@@ -1,7 +1,6 @@
 "use strict";
 
 const { Pool } = require("pg");
-const { DB } = require("../config");
 
 const pool = new Pool({
   user: "zishan",

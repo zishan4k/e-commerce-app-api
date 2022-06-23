@@ -1,5 +1,5 @@
 const express = require("express");
-const loaders = require("./loaders");
+const loaders = require("./src/loaders");
 
 const app = express();
 const port = 3000;
