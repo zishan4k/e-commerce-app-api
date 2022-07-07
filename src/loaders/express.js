@@ -1,6 +1,7 @@
 const session = require("express-session");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const { SESSION_SECRET } = require("../../config");
 
 module.exports = (app) => {
   app.use(cors());
@@ -9,7 +10,7 @@ module.exports = (app) => {
   app.set("trust proxy", 1);
   app.use(
     session({
-      secret: "session-secret",
+      secret: SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       cookie: {

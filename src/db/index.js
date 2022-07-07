@@ -1,13 +1,14 @@
 "use strict";
 
 const { Pool } = require("pg");
+const { DB } = require("../../config");
 
 const pool = new Pool({
-  user: "zishan",
-  host: "localhost",
-  database: "e_commerce_api",
-  password: null,
-  port: 5432,
+  user: DB.PGUSER,
+  host: DB.PGHOST,
+  database: DB.PGDATABASE,
+  password: DB.PGPASSWORD,
+  port: DB.PGPORT,
 });
 
 module.exports = {
