@@ -1,9 +1,6 @@
 const express = require("express");
-const loaders = require("./src/loaders");
+const loaders = require("./loaders");
 const { PORT } = require("./config");
-require("dotenv").config();
-
-console.log(process.env);
 
 const app = express();
 

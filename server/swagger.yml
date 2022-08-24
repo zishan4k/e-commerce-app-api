@@ -1,14 +1,14 @@
 swagger: "2.0"
 
 info:
-  description: "Codecademy e-commerce REST API"
+  description: "E-commerce REST API"
   version: "1.0.0"
   title: "E-commerce REST API"
 
 schemes:
   - http
 
-host: localhost:3000
+host: localhost:4000
 
 basePath: "/"
 
