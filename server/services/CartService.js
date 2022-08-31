@@ -1,6 +1,6 @@
-const CartModel = require("../models/cart");
-const OrderModel = require("../models/orders");
-const CartItemModel = require("../models/cartItem");
+const CartModel = require("../models/CartModel");
+const OrderModel = require("../models/OrderModel");
+const CartItemModel = require("../models/CartItemModel");
 
 module.exports = class CartService {
   async create(data) {

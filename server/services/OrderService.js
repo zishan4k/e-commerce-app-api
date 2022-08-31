@@ -1,4 +1,4 @@
-const OrderModel = require("../models/orders");
+const OrderModel = require("../models/OrderModel");
 
 module.exports = class OrderService {
   async create(data) {

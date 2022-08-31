@@ -1,5 +1,5 @@
 const express = require("express");
-const ProductsService = require("../services/products");
+const ProductsService = require("../services/ProductsService");
 
 const router = express.Router();
 const ProductsServiceInstance = new ProductsService();

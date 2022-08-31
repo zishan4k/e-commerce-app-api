@@ -1,12 +1,12 @@
-const db = require("../db");
-const pgp = require("pg-promise")({ capSQL: true });
+const db = require('../db');
+const pgp = require('pg-promise')({ capSQL: true });
 
 module.exports = class UsersModel {
   //Create User
   async create(data) {
     try {
       // Generate SQL statement - helper used for dynamic param injection
-      const statement = pgp.helpers.insert(data, null, "users") + "RETURNING *";
+      const statement = pgp.helpers.insert(data, null, 'users') + 'RETURNING *';
 
       const result = await db.query(statement);
 
@@ -25,8 +25,8 @@ module.exports = class UsersModel {
     try {
       const { id, ...params } = data;
 
-      const condition = pgp.as.format("WHERE id = ${id} RETURNING *", { id });
-      const statement = pgp.helpers.update(params, null, "users") + condition;
+      const condition = pgp.as.format('WHERE id = ${id} RETURNING *', { id });
+      const statement = pgp.helpers.update(params, null, 'users') + condition;
 
       const result = await db.query(statement);
 
@@ -64,6 +64,46 @@ module.exports = class UsersModel {
       const statement = `SELECT * FROM users WHERE id = $1`;
       const values = [id];
 
+      const result = await db.query(statement, values);
+
+      if (result.rows?.length) {
+        return result.rows[0];
+      }
+
+      return null;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  //find user by google id
+  async findByGoogleId(id) {
+    try {
+      //generate sql command
+      const statement = `SELECT * FROM users WHERE google = $1`;
+      const values = [id];
+
+      //execute sql command
+      const result = await db.query(statement, values);
+
+      if (result.rows?.length) {
+        return result.rows[0];
+      }
+
+      return null;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  //find by facebook id
+  async findByFacebookId(id) {
+    try {
+      //generate sql command
+      const statement = `SELECT * FROM users WHERE facebook = $1`;
+      const values = [id];
+
+      //execute sql command
       const result = await db.query(statement, values);
 
       if (result.rows?.length) {

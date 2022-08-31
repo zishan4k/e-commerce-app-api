@@ -1,17 +1,18 @@
-const { Client } = require('pg');
-const { DB } = require('./config');
+const { Client } = require("pg");
+const { DB } = require("./config");
 
 (async () => {
-
   const usersTableStmt = `
     CREATE TABLE IF NOT EXISTS users (
       id              INT               PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
       firstName       VARCHAR(50),
       lastName        VARCHAR(50),
       email           VARCHAR(50),      
-      password        TEXT
+      password        TEXT,
+      google          JSON,
+      facebook        JSON
     );
-  `
+  `;
 
   const productsTableStmt = `
     CREATE TABLE IF NOT EXISTS products (
@@ -20,7 +21,7 @@ const { DB } = require('./config');
       price           BIGINT          NOT NULL,
       description     VARCHAR(100)     NOT NULL
     );
-  `
+  `;
 
   const ordersTableStmt = `
     CREATE TABLE IF NOT EXISTS orders (
@@ -29,7 +30,7 @@ const { DB } = require('./config');
       userId          INT             NOT NULL,
       FOREIGN KEY (userId) REFERENCES users(id)
     );
-  `
+  `;
 
   const orderItemsTableStmt = `
     CREATE TABLE IF NOT EXISTS orderItem (
@@ -40,7 +41,7 @@ const { DB } = require('./config');
       productId       INT             NOT NULL,
       FOREIGN KEY (orderId) REFERENCES orders(id)
     );
-  `
+  `;
 
   const cartsTableStmt = `
     CREATE TABLE IF NOT EXISTS cart (
@@ -50,7 +51,7 @@ const { DB } = require('./config');
       created         DATE            NOT NULL,
       FOREIGN KEY (userId) REFERENCES users(id)
     );
-  `
+  `;
 
   const cartItemsTableStmt = `
     CREATE TABLE IF NOT EXISTS cartItem (
@@ -58,7 +59,7 @@ const { DB } = require('./config');
       cartId          INT             NOT NULL,
       FOREIGN KEY (cartId) REFERENCES carts(id),
     );
-  `
+  `;
 
   try {
     const db = new Client({
@@ -66,7 +67,7 @@ const { DB } = require('./config');
       host: DB.PGHOST,
       database: DB.PGDATABASE,
       password: DB.PGPASSWORD,
-      port: DB.PGPORT
+      port: DB.PGPORT,
     });
 
     await db.connect();
@@ -80,9 +81,7 @@ const { DB } = require('./config');
     await db.query(cartItemsTableStmt);
 
     await db.end();
-
-  } catch(err) {
+  } catch (err) {
     console.log("ERROR CREATING ONE OR MORE TABLES: ", err);
   }
-
 })();

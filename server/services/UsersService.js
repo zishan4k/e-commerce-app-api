@@ -1,5 +1,5 @@
 const createError = require("http-errors");
-const UsersModel = require("../models/users");
+const UsersModel = require("../models/UsersModel");
 
 const UsersModelInstance = new UsersModel();
 
