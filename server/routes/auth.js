@@ -9,14 +9,22 @@ const CartServiceInstance = new CartService();
 const UserServiceInstance = new UserService();
 
 module.exports = (app, passport) => {
-  app.use('/auth', router);
+  app.use('/api/auth', router);
 
   // Register
   router.post('/register', async (req, res, next) => {
     try {
-      const { data } = req.body;
-
+      console.log('connected to backend');
+      console.log(req.body);
+      const { email, password } = req.body;
+      const data = {
+        email,
+        password,
+      };
+      console.log(data); // error is here data variable is undefined!
+      console.log('backend route auth');
       const response = await AuthServiceInstance.register(data);
+      console.log('backend route auth success');
       res.status(200).send(response);
     } catch (err) {
       next(err);
@@ -73,6 +81,7 @@ module.exports = (app, passport) => {
   //Login status
   router.get('/logged_in', async (req, res, next) => {
     try {
+      // console.log(req.user);
       const { id } = req.user;
 
       const cart = await CartServiceInstance.loadCart(id);

@@ -1,13 +1,13 @@
-const express = require("express");
-const ProductsService = require("../services/ProductsService");
+const express = require('express');
+const ProductsService = require('../services/ProductsService');
 
 const router = express.Router();
 const ProductsServiceInstance = new ProductsService();
 
 module.exports = (app) => {
-  app.use("/products", router);
+  app.use('/api/products', router);
 
-  router.get("/", async (req, res, next) => {
+  router.get('/', async (req, res, next) => {
     try {
       const query = req.query;
       const response = await ProductsServiceInstance.list(query);
@@ -17,7 +17,7 @@ module.exports = (app) => {
     }
   });
 
-  router.get("/:productId", async (req, res, next) => {
+  router.get('/:productId', async (req, res, next) => {
     try {
       const { productId } = req.params;
       const response = await ProductsServiceInstance.get(productId);

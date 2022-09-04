@@ -5,7 +5,9 @@ export const checkLoginStatus = createAsyncThunk(
   'auth/checkLogin',
   async (param, thunkAPI) => {
     try {
+      console.log('check isLoggedIn');
       const response = await isLoggedIn();
+      console.log('isLoggedIn checked');
 
       return {
         cart: response.cart,

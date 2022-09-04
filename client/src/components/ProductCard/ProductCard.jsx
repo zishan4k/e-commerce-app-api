@@ -8,11 +8,7 @@ const ProductCard = (props) => {
   const { data } = props;
   return (
     <div className="grid-item">
-      <img
-        src="https://elcopcbonline.com/photos/product/4/176/4.jpg"
-        alt=""
-        className="product-cart-img"
-      />
+      <img src={data.image} alt="" className="product-cart-img" />
       <div className="product-card-info-container">
         <div className="product-card-info">
           <p>{data.name}</p>

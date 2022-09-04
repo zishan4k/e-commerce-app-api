@@ -1,5 +1,5 @@
-const { Client } = require("pg");
-const { DB } = require("./config");
+const { Client } = require('pg');
+const { DB } = require('./config');
 
 (async () => {
   const usersTableStmt = `
@@ -19,7 +19,8 @@ const { DB } = require("./config");
       id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
       name            VARCHAR(50)     NOT NULL,
       price           BIGINT          NOT NULL,
-      description     VARCHAR(100)     NOT NULL
+      description     VARCHAR(100)    NOT NULL,
+      image           VARCHAR(500)    NOT NULL
     );
   `;
 
@@ -82,6 +83,6 @@ const { DB } = require("./config");
 
     await db.end();
   } catch (err) {
-    console.log("ERROR CREATING ONE OR MORE TABLES: ", err);
+    console.log('ERROR CREATING ONE OR MORE TABLES: ', err);
   }
 })();

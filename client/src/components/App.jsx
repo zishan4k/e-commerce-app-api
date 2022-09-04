@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import "./App.css";
+import React, { useEffect } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import './App.css';
 
-import Account from "../routes/Account/Account";
-import Cart from "../routes/Cart/Cart";
-import Checkout from "../routes/Checkout/Checkout";
-import Home from "../routes/Home/Home";
-import Login from "../routes/Login/Login";
-import OrderDetails from "../routes/OrderDetails/OrderDetails";
-import Orders from "../routes/Orders/Orders";
-import ProductDetails from "../routes/ProductDetails/ProductDetails";
-import Register from "../routes/Register/Register";
+import Account from '../routes/Account/Account';
+import Cart from '../routes/Cart/Cart';
+import Checkout from '../routes/Checkout/Checkout';
+import Home from '../routes/Home/Home';
+import Login from '../routes/Login/Login';
+import OrderDetails from '../routes/OrderDetails/OrderDetails';
+import Orders from '../routes/Orders/Orders';
+import ProductDetails from '../routes/ProductDetails/ProductDetails';
+import Register from '../routes/Register/Register';
 
-import Header from "./Header/Header";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Header from './Header/Header';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
-import { checkLoginStatus } from "../store/auth/Auth.actions";
+import { checkLoginStatus } from '../store/auth/Auth.actions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,9 @@ const App = () => {
   //load user cart on login
   useEffect(() => {
     const isLoggedIn = async () => {
+      console.log('checking login status');
       await dispatch(checkLoginStatus());
+      console.log('login status checked');
     };
 
     isLoggedIn();

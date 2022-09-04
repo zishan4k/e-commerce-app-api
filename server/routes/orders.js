@@ -1,13 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const OrderService = require("../services/OrderService");
+const OrderService = require('../services/OrderService');
 const OrderServiceInstance = new OrderService();
 
 module.exports = (app) => {
-  app.use("/orders", router);
+  app.use('/api/orders', router);
 
-  router.get("/", async (req, res, next) => {
+  router.get('/', async (req, res, next) => {
     try {
       const { id } = req.user;
 
@@ -18,7 +18,7 @@ module.exports = (app) => {
     }
   });
 
-  router.get("/:orderId", async (req, res, next) => {
+  router.get('/:orderId', async (req, res, next) => {
     try {
       const { orderId } = req.params;
 

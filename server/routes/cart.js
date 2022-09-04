@@ -1,13 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const CartService = require("../services/CartService");
+const CartService = require('../services/CartService');
 
 const CartServiceInstance = new CartService();
 
 module.exports = (app, passport) => {
-  app.use("/carts", router);
+  app.use('/api/carts', router);
 
-  router.get("/mycart", async (req, res, next) => {
+  router.get('/mycart', async (req, res, next) => {
     try {
       const { id } = req.user;
 
@@ -19,7 +19,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.put("/mycart", async (req, res, next) => {
+  router.put('/mycart', async (req, res, next) => {
     try {
       const { id } = req.user;
 
@@ -30,7 +30,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.post("/mycart", async (req, res, next) => {
+  router.post('/mycart', async (req, res, next) => {
     try {
       const { id } = req.user;
 
@@ -42,7 +42,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.post("/mycart/items", async (req, res, next) => {
+  router.post('/mycart/items', async (req, res, next) => {
     try {
       const { id } = req.user;
       const data = req.body;
@@ -55,7 +55,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.put("/mycart/items/:cartItemId", async (req, res, next) => {
+  router.put('/mycart/items/:cartItemId', async (req, res, next) => {
     try {
       const { cartItemId } = req.params;
       const data = req.body;
@@ -68,7 +68,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.delete("/mycart/items/:cartItemId", async (req, res, next) => {
+  router.delete('/mycart/items/:cartItemId', async (req, res, next) => {
     try {
       const { cartItemId } = req.params;
 
@@ -80,7 +80,7 @@ module.exports = (app, passport) => {
     }
   });
 
-  router.post("/mycart/checkout", async (req, res, next) => {
+  router.post('/mycart/checkout', async (req, res, next) => {
     try {
       const { id } = req.user;
 

@@ -21,7 +21,9 @@ const Register = () => {
   const handleRegistration = async (credentials) => {
     try {
       setIsLoading(true);
+      console.log('loading');
       await dispatch(registerUser(credentials));
+      console.log('done loading');
       setIsLoading(false);
       navigate('/');
     } catch (err) {
@@ -45,7 +47,11 @@ const Register = () => {
       <div className="formComp">
         <div className="formWrapper">
           <Formik
-            initialValues={{ email: '', password: '', confirmPassword: '' }}
+            initialValues={{
+              email: '',
+              password: '',
+              confirmPassword: '',
+            }}
             validationSchema={registerSchema}
             validateOnBlur
             onSubmit={async (data) => {

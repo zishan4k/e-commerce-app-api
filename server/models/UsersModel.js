@@ -6,13 +6,21 @@ module.exports = class UsersModel {
   async create(data) {
     try {
       // Generate SQL statement - helper used for dynamic param injection
+      console.log('generating statement');
       const statement = pgp.helpers.insert(data, null, 'users') + 'RETURNING *';
-
+      // error is being caused because users table id column (primary key) is setup as integer type
+      // and will not execute this statement because it is missing an id value... need to remake the
+      // tables within the database so that the table have an id column of serial type
+      console.log('executing statement');
+      console.log(statement);
       const result = await db.query(statement);
+      console.log('generating result');
 
       if (result.rows?.length) {
         return result.rows[0];
       }
+
+      console.log(result);
 
       return null;
     } catch (err) {

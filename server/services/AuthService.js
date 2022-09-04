@@ -6,18 +6,24 @@ const UsersModelInstance = new UsersModel();
 module.exports = class AuthService {
   // User registration
   async register(data) {
-    const { email, password } = data;
+    console.log('AuthService entered');
+    console.log('AuthService data destructured');
 
+    const { email } = data;
+    console.log(email);
     try {
       // Check if user already exists
+      console.log('checking for user');
       const user = await UsersModelInstance.findByEmail(email);
-
+      console.log('done checking for user');
+      console.log(user);
       if (user) {
         throw createError(409, 'Email already in use.');
       }
-
+      console.log('creating new user');
       return await UsersModelInstance.create(data);
     } catch (err) {
+      console.log('unable to create new user');
       throw createError(500, err);
     }
   }
