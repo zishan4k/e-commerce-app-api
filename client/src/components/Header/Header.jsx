@@ -10,15 +10,14 @@ import {
   Typography,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import './Header.css';
 
 const Header = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { items } = useSelector((state) => state.cart);
   return (
-    <AppBar className="root" position="static">
-      <Toolbar className="header">
-        <Typography variant="h6" className="title">
+    <AppBar sx={{ flexGrow: 1 }} position="static">
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Typography sx={{ flexGrow: 1 }} variant="h6">
           Zee's Clothing
         </Typography>
         <div className="links">
@@ -27,7 +26,7 @@ const Header = () => {
               Login
             </Button>
           )}
-          {!isAuthenticated && (
+          {isAuthenticated && (
             <Button color="inherit" component={Link} to={`/orders`}>
               Orders
             </Button>

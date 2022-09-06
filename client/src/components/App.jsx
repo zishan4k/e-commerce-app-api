@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import './App.css';
 
 import Account from '../routes/Account/Account';
 import Cart from '../routes/Cart/Cart';
@@ -30,7 +29,7 @@ const App = () => {
     isLoggedIn();
   }, [dispatch]);
   return (
-    <div className="App">
+    <div style={{ flex: 1 }}>
       <BrowserRouter>
         <Header />
         <Routes>

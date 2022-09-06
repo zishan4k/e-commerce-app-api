@@ -12,7 +12,7 @@ const Incrementer = (props) => {
       </IconButton>
       <TextField
         variant="outlined"
-        className="incrementer-text-field"
+        sx={{ width: '3em', textAlign: 'center' }}
         value={value}
       />
       <IconButton aria-label="add to shopping cart" onClick={onIncrement}>

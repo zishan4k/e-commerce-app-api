@@ -57,7 +57,7 @@ const Login = () => {
             }}
           >
             <Form className="baseForm">
-              <header className="baseFormHeader">
+              <header>
                 <h1 className="baseFormHeading">Log in</h1>
               </header>
               <TextField label="Email" name="email" id="email-input" />
@@ -73,7 +73,13 @@ const Login = () => {
               </Button>
               <p>Forgotten your password?</p>
               <Divider />
-              <div className="signIn">
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
                 <p>Sign in with</p>
               </div>
               <div className="social-btn-container">

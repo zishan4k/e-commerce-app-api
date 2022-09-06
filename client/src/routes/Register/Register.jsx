@@ -9,7 +9,7 @@ import { Divider } from '@mui/material';
 
 import * as yup from 'yup';
 
-import './Register.css';
+import '../Login/Login.css';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -85,7 +85,13 @@ const Register = () => {
                 Submit
               </Button>
               <Divider />
-              <div>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
                 <p>Register with</p>
               </div>
               <div className="social-btn-container">

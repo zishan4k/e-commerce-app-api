@@ -1,10 +1,9 @@
 import React from 'react';
-import './Account.css';
 
 const Account = () => {
   return (
-    <div className="account-container">
-      <p className="account-title">Account</p>
+    <div style={{ display: 'flex', backgroundColor: 'blue' }}>
+      <p tyle={{ fontSize: 40, color: 'black' }}>Account</p>
     </div>
   );
 };

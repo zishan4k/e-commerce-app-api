@@ -1,0 +1,12 @@
+/* Orders Page Styles */
+
+.orders-page {
+  display: flex;
+  height: 100%;
+  padding: 0 25%;
+}
+
+.orders-content-container {
+  flex: 1;
+  padding-top: 5%;
+}
