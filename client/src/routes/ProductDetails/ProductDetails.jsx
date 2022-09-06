@@ -35,8 +35,10 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = async () => {
-    await dispatch(addItem(product, quantity));
+    await dispatch(addItem({ product, quantity }));
   };
+
+  console.log(quantity);
 
   return (
     <section className="product-details-container">

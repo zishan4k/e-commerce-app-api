@@ -29,10 +29,7 @@ export const register = async (data) => {
 //verifying login status of user
 export const isLoggedIn = async () => {
   try {
-    console.log('check response');
     const response = await API.get('auth/logged_in');
-    console.log('response checked');
-
     return response.data;
   } catch (err) {
     throw err.response.data;

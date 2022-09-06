@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../store/auth/Auth.actions";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../store/auth/Auth.actions';
+import { Formik, Form } from 'formik';
+import TextField from '../../components/TextField/TextField';
+import Button from '../../components/Button/Button';
+import { Divider } from '@mui/material';
+import * as yup from 'yup';
 
-import * as yup from "yup";
-
-import "./Login.css";
-import { Formik, Form } from "formik";
-import TextField from "../../components/TextField/TextField";
-import Button from "../../components/Button/Button";
-import { Divider } from "@mui/material";
+import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,17 +17,18 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   //login handler
   const handleLogin = async (credentials) => {
     try {
       setIsLoading(true);
+      console.log(credentials);
       await dispatch(loginUser(credentials));
       setIsLoading(false);
-      navigate("/");
+      navigate('/');
     } catch (err) {
       setIsLoading(false);
     }
@@ -37,10 +37,10 @@ const Login = () => {
   const loginSchema = yup.object().shape({
     email: yup
       .string()
-      .email("Invalid email address")
-      .required("Email address is required"),
+      .email('Invalid email address')
+      .required('Email address is required'),
 
-    password: yup.string().required("Password is required"),
+    password: yup.string().required('Password is required'),
   });
 
   return (

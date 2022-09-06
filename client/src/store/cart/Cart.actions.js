@@ -10,12 +10,17 @@ export const addItem = createAsyncThunk(
   'cart/addItem',
   async ({ product, quantity }, thunkAPI) => {
     try {
+      console.log(product);
+      console.log(quantity);
+      console.log('before cart.action response');
       const response = await addToCart(product.id, quantity);
+      console.log('after cart.action response');
       const item = {
         ...product,
         cartItemId: response.id,
         quantity,
       };
+      console.log(item);
       return { item };
     } catch (err) {
       throw err;
@@ -24,7 +29,7 @@ export const addItem = createAsyncThunk(
 );
 
 export const checkoutCart = createAsyncThunk(
-  'carts/checkoutCart',
+  'cart/checkoutCart',
   async ({ cartId, paymentInfo }, thunkAPI) => {
     try {
       const response = await checkout(cartId, paymentInfo);

@@ -44,6 +44,8 @@ module.exports = (app, passport) => {
 
   router.post('/mycart/items', async (req, res, next) => {
     try {
+      console.log(req.user); // need to sort out user verfifcation
+      console.log(req.body);
       const { id } = req.user;
       const data = req.body;
 

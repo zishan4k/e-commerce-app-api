@@ -20,7 +20,7 @@ const authSlice = createSlice({
       })
       //login success
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log(1);
         const { isAuthenticated } = action.payload;
         state.isAuthenticated = isAuthenticated;
       })
@@ -32,9 +32,8 @@ const authSlice = createSlice({
       })
       //register success
       .addCase(registerUser.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        // const { isAuthenticated } = action.payload;
-        // state.isAuthenticated = isAuthenticated;
+        const { isAuthenticated } = action.payload;
+        state.isAuthenticated = isAuthenticated;
       })
       //register failure
       .addCase(registerUser.rejected, (state, action) => {

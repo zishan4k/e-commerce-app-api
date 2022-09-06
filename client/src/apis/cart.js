@@ -1,10 +1,9 @@
-import { response } from 'express';
 import API from './client';
 
 //loading users cart
 export const fetchCart = async () => {
   try {
-    const response = await API.get(`carts/mine`);
+    const response = await API.get(`carts/mycart`);
     return response.data;
   } catch (err) {
     throw err.response.data;
@@ -14,10 +13,13 @@ export const fetchCart = async () => {
 //adding product to users cart
 export const addToCart = async (productId, quantity) => {
   try {
-    const response = await API.post(`carts/mine/items`, {
+    console.log(productId);
+    console.log(quantity);
+    const response = await API.post(`carts/mycart/items`, {
       productId,
       quantity,
     });
+    console.log(response);
     return response.data;
   } catch (err) {
     throw err.response.data;
@@ -27,7 +29,7 @@ export const addToCart = async (productId, quantity) => {
 //removing product fom users cart
 export const removeFromCart = async (cartItemId) => {
   try {
-    const response = await API.delete(`carts/mine/items/${cartItemId}`);
+    const response = await API.delete(`carts/mycart/items/${cartItemId}`);
     return response.data;
   } catch (err) {
     throw err.response.data;
@@ -37,7 +39,7 @@ export const removeFromCart = async (cartItemId) => {
 //checkout users cart
 export const checkout = async (cartId, paymentInfo) => {
   try {
-    const response = await API.post(`carts/mine/checkout`, {
+    const response = await API.post(`carts/mycart/checkout`, {
       cartId,
       paymentInfo,
     });

@@ -81,7 +81,7 @@ module.exports = (app, passport) => {
   //Login status
   router.get('/logged_in', async (req, res, next) => {
     try {
-      // console.log(req.user);
+      console.log(req.user);
       const { id } = req.user;
 
       const cart = await CartServiceInstance.loadCart(id);

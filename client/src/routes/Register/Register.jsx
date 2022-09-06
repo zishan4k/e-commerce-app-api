@@ -1,16 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../store/auth/Auth.actions';
 import { Form, Formik } from 'formik';
 import Button from '../../components/Button/Button';
 import TextField from '../../components/TextField/TextField';
+import { Divider } from '@mui/material';
 
 import * as yup from 'yup';
 
 import './Register.css';
-import { Divider } from '@mui/material';
 
 const Register = () => {
   const navigate = useNavigate();

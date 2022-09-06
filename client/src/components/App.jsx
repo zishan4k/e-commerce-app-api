@@ -24,9 +24,7 @@ const App = () => {
   //load user cart on login
   useEffect(() => {
     const isLoggedIn = async () => {
-      console.log('checking login status');
       await dispatch(checkLoginStatus());
-      console.log('login status checked');
     };
 
     isLoggedIn();

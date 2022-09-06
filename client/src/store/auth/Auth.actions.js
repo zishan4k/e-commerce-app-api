@@ -5,10 +5,13 @@ export const checkLoginStatus = createAsyncThunk(
   'auth/checkLogin',
   async (param, thunkAPI) => {
     try {
-      console.log('check isLoggedIn');
+      if (!param) {
+        return {
+          isAuthenticated: false,
+        };
+      }
       const response = await isLoggedIn();
-      console.log('isLoggedIn checked');
-
+      console.log(response);
       return {
         cart: response.cart,
         isAuthenticated: true,
@@ -24,8 +27,10 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials, thunkAPI) => {
     try {
+      console.log('before auth.action response');
       const response = await login(credentials);
-
+      console.log('after auth.action response');
+      console.log(response);
       return {
         user: response,
         isAuthenticated: true,
