@@ -37,26 +37,21 @@ module.exports = class CartService {
     try {
       const { product, quantity } = item;
       const product_id = product.id;
+
       // Load user cart based on ID
       const cart = await CartModel.findByUser(user_id);
-      console.log(cart);
 
       if (!cart) {
-        console.log('returning null');
         return null;
       }
 
       // Add Item to cart
-      console.log('adding item to new cart');
-
       const cartItem = await CartItemModel.create({
         cart_id: cart.id,
         product_id,
         quantity,
       });
 
-      console.log('finished adding item to new cart');
-      console.log(cartItem);
       return cartItem;
     } catch (err) {
       throw err;

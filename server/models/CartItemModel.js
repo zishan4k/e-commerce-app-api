@@ -5,17 +5,13 @@ module.exports = class CartItemModel {
   // Create new cart item
   static async create(data) {
     try {
-      console.log(data);
       const statement =
         pgp.helpers.insert(data, null, 'cart_items') + 'RETURNING *';
-      console.log(statement);
       const results = await db.query(statement);
       // console.log(result);
       const result = results.rows[0];
-      console.log(result);
       return result;
     } catch (err) {
-      console.log('is it this error');
       throw new Error(err);
     }
   }

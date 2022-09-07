@@ -14,17 +14,13 @@ module.exports = (app, passport) => {
   // Register
   router.post('/register', async (req, res, next) => {
     try {
-      console.log('connected to backend');
-      console.log(req.body);
       const { email, password } = req.body;
       const data = {
         email,
         password,
       };
-      console.log(data); // error is here data variable is undefined!
-      console.log('backend route auth');
+
       const response = await AuthServiceInstance.register(data);
-      console.log('backend route auth success');
       res.status(200).send(response);
     } catch (err) {
       next(err);
