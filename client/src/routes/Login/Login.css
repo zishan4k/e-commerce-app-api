@@ -1,6 +1,6 @@
 /* Login Page Styles */
 .app {
-  padding: 50px;
+  padding-top: 50px;
   width: 100%;
   min-height: 100vh;
   display: grid;
@@ -11,9 +11,16 @@
 }
  
 .formComp {
-  max-width: 20vw;
-  width: 20vw;
+  width: 600px;
+  max-width: 80vw;
 }
+
+@media only screen and (max-width: 420px) {
+  .app {
+    min-height: fit-content;
+  }  
+}
+
 
 .formWrapper {
   padding: 30px 20px;

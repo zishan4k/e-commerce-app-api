@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../../store/cart/Cart.actions';
+import { removeItem } from '../../store/carts/Carts.actions';
 import Incrementer from '../Incrementer/Incrementer';
 import { Divider, Typography } from '@mui/material';
 import './CartItemCard.css';
 
 const CartItemCard = (props) => {
-  const { cartItemId, name, price, qty } = props;
+  console.log(props);
+  const { cartItemId, description, id, image, name, price, quantity } = props;
 
-  const [quantity, setQuantity] = useState(qty);
+  const [qty, setQty] = useState(quantity);
 
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    setQty(qty + 1);
   };
 
   const handleDecrement = () => {
-    if (quantity === 1) {
+    if (qty === 1) {
       return;
     }
-    setQuantity(quantity - 1);
+    setQty(qty - 1);
   };
 
   const remove = async () => {
@@ -32,7 +33,7 @@ const CartItemCard = (props) => {
       <div className="cart-item-container">
         <div className="cart-item-details">
           <img
-            src="https://m.media-amazon.com/images/I/61fTX5TjAEL._UL1001_.jpg"
+            src={image}
             alt=""
             style={{ height: '100%', paddingRight: '10px' }}
           />
@@ -43,12 +44,12 @@ const CartItemCard = (props) => {
           <Incrementer
             onIncrement={handleIncrement}
             onDecrement={handleDecrement}
-            value={quantity}
+            value={qty}
           />
           <Typography onClick={remove}>Remove</Typography>
         </div>
         <div className="cart-item-price">
-          <p>{price * qty}</p>
+          <p>{price * quantity}</p>
         </div>
       </div>
       <Divider />

@@ -13,7 +13,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Header = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { items } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.carts);
   return (
     <AppBar sx={{ flexGrow: 1 }} position="static">
       <Toolbar sx={{ justifyContent: 'space-between' }}>

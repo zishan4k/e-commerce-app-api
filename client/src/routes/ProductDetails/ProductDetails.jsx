@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProduct } from '../../store/products/Products.actions';
-import { addItem } from '../../store/cart/Cart.actions';
+import { addItem } from '../../store/carts/Carts.actions';
 import Incrementer from '../../components/Incrementer/Incrementer';
 import { Button, Typography } from '@mui/material';
 
@@ -12,7 +12,9 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector((state) => state.products);
+  const user = useSelector((state) => state.users);
   const product = products[productId];
 
   useEffect(() => {
@@ -35,10 +37,12 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = async () => {
-    await dispatch(addItem({ product, quantity }));
+    if (!user.id) {
+      navigate(`/login`);
+    } else {
+      await dispatch(addItem({ product, quantity, user }));
+    }
   };
-
-  console.log(quantity);
 
   return (
     <section className="product-details-container">

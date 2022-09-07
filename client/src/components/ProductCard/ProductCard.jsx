@@ -14,14 +14,22 @@ const ProductCard = (props) => {
           <p>{data.name}</p>
           <p>{data.price}</p>
         </div>
-        <MuiButton
-          variant="outlined"
-          color="primary"
-          component={Link}
-          to={`/products/${data.id}`}
-        >
-          View
-        </MuiButton>
+        <div className="view-btn">
+          <MuiButton
+            variant="outlined"
+            color="primary"
+            component={Link}
+            to={`/products/${data.id}`}
+            sx={{
+              height: '30px',
+              border: 'none',
+              backgroundColor: '#1976d2',
+              color: 'white',
+            }}
+          >
+            <b>View</b>
+          </MuiButton>
+        </div>
       </div>
     </div>
   );

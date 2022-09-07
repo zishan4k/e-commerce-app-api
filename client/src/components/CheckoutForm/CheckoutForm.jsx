@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { checkoutCart } from '../../store/cart/Cart.actions';
+import { checkoutCart } from '../../store/carts/Carts.actions';
 
 import './CheckoutForm.css';
 

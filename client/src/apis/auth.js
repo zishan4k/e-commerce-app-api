@@ -3,9 +3,9 @@ import API from './client';
 //logging in user
 export const login = async (credentials) => {
   try {
-    console.log('logging in');
+    // console.log('logging in');
     const response = await API.post('auth/login', credentials);
-    console.log('logged in');
+    // console.log('logged in');
     return response.data;
   } catch (err) {
     throw err.response.data;

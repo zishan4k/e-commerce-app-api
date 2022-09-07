@@ -1,20 +1,21 @@
-const db = require("../db");
-const pgp = require("pg-promise")({ capSQL: true });
+const db = require('../db');
+const pgp = require('pg-promise')({ capSQL: true });
 
 module.exports = class CartItemModel {
   // Create new cart item
   static async create(data) {
     try {
+      console.log(data);
       const statement =
-        pgp.helpers.insert(data, null, "cartItem") + "RETURNING *";
-      const result = await db.query(statement);
-
-      if (result.rows?.length) {
-        return result.rows[0];
-      }
-
-      return null;
+        pgp.helpers.insert(data, null, 'cart_items') + 'RETURNING *';
+      console.log(statement);
+      const results = await db.query(statement);
+      // console.log(result);
+      const result = results.rows[0];
+      console.log(result);
+      return result;
     } catch (err) {
+      console.log('is it this error');
       throw new Error(err);
     }
   }
@@ -22,8 +23,8 @@ module.exports = class CartItemModel {
   // Update existing cart item
   static async update(id, data) {
     try {
-      const condition = pgp.as.format("WHERE id = ${id} RETURNING *", { id });
-      const statement = pgp.helpers.update(data, null, "cartItem") + condition;
+      const condition = pgp.as.format('WHERE id = ${id} RETURNING *', { id });
+      const statement = pgp.helpers.update(data, null, 'cartItem') + condition;
 
       const result = await db.query(statement);
 

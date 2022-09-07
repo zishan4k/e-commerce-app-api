@@ -3,8 +3,8 @@ import { checkLoginStatus, loginUser } from '../auth/Auth.actions';
 
 const initialState = {};
 
-const userSlice = createSlice({
-  name: 'user',
+const usersSlice = createSlice({
+  name: 'users',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -20,4 +20,4 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
+export default usersSlice.reducer;

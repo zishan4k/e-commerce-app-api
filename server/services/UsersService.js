@@ -1,5 +1,5 @@
-const createError = require("http-errors");
-const UsersModel = require("../models/UsersModel");
+const createError = require('http-errors');
+const UsersModel = require('../models/UsersModel');
 
 const UsersModelInstance = new UsersModel();
 
@@ -10,7 +10,7 @@ module.exports = class UsersService {
       const user = await UsersModelInstance.findById(id);
 
       if (!user) {
-        throw createError(404, "User not found.");
+        throw createError(404, 'User not found.');
       }
 
       return user;

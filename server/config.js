@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 module.exports = {
   PORT: process.env.PORT,
@@ -20,4 +20,5 @@ module.exports = {
     CONSUMER_SECRET: process.env.GOOGLE_CONSUMER_SECRET,
   },
   SESSION_SECRET: process.env.SESSION_SECRET,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
 };

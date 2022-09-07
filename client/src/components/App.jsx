@@ -29,7 +29,12 @@ const App = () => {
     isLoggedIn();
   }, [dispatch]);
   return (
-    <div style={{ flex: 1 }}>
+    <div
+      style={{
+        flex: 1,
+        backgroundColor: '#e3e3e3',
+      }}
+    >
       <BrowserRouter>
         <Header />
         <Routes>

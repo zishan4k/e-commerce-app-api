@@ -25,7 +25,7 @@ const Login = () => {
   const handleLogin = async (credentials) => {
     try {
       setIsLoading(true);
-      console.log(credentials);
+      // console.log(credentials);
       await dispatch(loginUser(credentials));
       setIsLoading(false);
       navigate('/');
@@ -61,7 +61,12 @@ const Login = () => {
                 <h1 className="baseFormHeading">Log in</h1>
               </header>
               <TextField label="Email" name="email" id="email-input" />
-              <TextField label="Password" name="password" id="password-input" />
+              <TextField
+                label="Password"
+                name="password"
+                id="password-input"
+                type="password"
+              />
               {error && <div>{error}</div>}
               <Button
                 variant="contained"

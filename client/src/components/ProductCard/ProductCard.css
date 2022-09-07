@@ -11,8 +11,13 @@
   
 .product-card-info-container {
   display: flex;
-  flex-direction: row;
   padding: 10px 40px;
   justify-content: space-between;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
   

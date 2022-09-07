@@ -11,13 +11,14 @@ export const fetchCart = async () => {
 };
 
 //adding product to users cart
-export const addToCart = async (productId, quantity) => {
+export const addToCart = async (product, quantity, user) => {
   try {
-    console.log(productId);
+    console.log(product);
     console.log(quantity);
     const response = await API.post(`carts/mycart/items`, {
-      productId,
+      product,
       quantity,
+      user,
     });
     console.log(response);
     return response.data;

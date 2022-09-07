@@ -4,16 +4,14 @@ import {
   checkout,
   fetchCart,
   removeFromCart,
-} from '../../apis/cart';
+} from '../../apis/carts';
 
 export const addItem = createAsyncThunk(
-  'cart/addItem',
-  async ({ product, quantity }, thunkAPI) => {
+  'carts/addItem',
+  async ({ product, quantity, user }, thunkAPI) => {
     try {
-      console.log(product);
-      console.log(quantity);
       console.log('before cart.action response');
-      const response = await addToCart(product.id, quantity);
+      const response = await addToCart(product, quantity, user);
       console.log('after cart.action response');
       const item = {
         ...product,
@@ -29,7 +27,7 @@ export const addItem = createAsyncThunk(
 );
 
 export const checkoutCart = createAsyncThunk(
-  'cart/checkoutCart',
+  'carts/checkoutCart',
   async ({ cartId, paymentInfo }, thunkAPI) => {
     try {
       const response = await checkout(cartId, paymentInfo);
@@ -43,7 +41,7 @@ export const checkoutCart = createAsyncThunk(
 );
 
 export const loadCart = createAsyncThunk(
-  'cart/loadCart',
+  'carts/loadCart',
   async (params, thunkAPI) => {
     try {
       const response = await fetchCart();
@@ -57,7 +55,7 @@ export const loadCart = createAsyncThunk(
 );
 
 export const removeItem = createAsyncThunk(
-  'cart/removeItem',
+  'carts/removeItem',
   async (cartItemId, thunkAPI) => {
     try {
       await removeFromCart(cartItemId);

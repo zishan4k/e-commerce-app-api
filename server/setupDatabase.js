@@ -4,11 +4,11 @@ const { DB } = require('./config');
 (async () => {
   const usersTableStmt = `
     CREATE TABLE IF NOT EXISTS users (
-      id              INT               PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      firstName       VARCHAR(50),
-      lastName        VARCHAR(50),
-      email           VARCHAR(50),      
-      password        TEXT,
+      id              SERIAL          PRIMARY KEY NOT NULL,
+      first_name      VARCHAR(50),
+      last_name       VARCHAR(50),
+      email           VARCHAR(100)    NOT NULL,  
+      password        TEXT            NOT NULL,
       google          JSON,
       facebook        JSON
     );
@@ -16,49 +16,57 @@ const { DB } = require('./config');
 
   const productsTableStmt = `
     CREATE TABLE IF NOT EXISTS products (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+      id              SERIAL          PRIMARY KEY NOT NULL,
       name            VARCHAR(50)     NOT NULL,
-      price           BIGINT          NOT NULL,
-      description     VARCHAR(100)    NOT NULL,
-      image           VARCHAR(500)    NOT NULL
+      price           MONEY           NOT NULL,
+      description     VARCHAR(200)    NOT NULL,
+      image           TEXT            NOT NULL
     );
   `;
 
   const ordersTableStmt = `
     CREATE TABLE IF NOT EXISTS orders (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      total           INT             NOT NULL,
-      userId          INT             NOT NULL,
-      FOREIGN KEY (userId) REFERENCES users(id)
+      id              SERIAL          PRIMARY KEY NOT NULL,
+      total           MONEY           NOT NULL,
+      user_id         INT             NOT NULL,
+      created         DATE            NOT NULL,
+      modified        DATE            NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id)
     );
   `;
 
   const orderItemsTableStmt = `
-    CREATE TABLE IF NOT EXISTS orderItem (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+    CREATE TABLE IF NOT EXISTS order_items (
+      id              SERIAL          PRIMARY KEY NOT NULL,
+      name            VARCHAR(50)     NOT NULL,
+      description     VARCHAR(200)    NOT NULL,
       quantity        INT             NOT NULL,
-      price           INT             NOT NULL,
-      orderId         INT             NOT NULL,
-      productId       INT             NOT NULL,
-      FOREIGN KEY (orderId) REFERENCES orders(id)
+      price           MONEY           NOT NULL,
+      order_id        INT             NOT NULL,
+      product_id      INT             NOT NULL,
+      FOREIGN KEY (order_id) REFERENCES orders(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
     );
   `;
 
   const cartsTableStmt = `
-    CREATE TABLE IF NOT EXISTS cart (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      userId          INT             NOT NULL,
+    CREATE TABLE IF NOT EXISTS carts (
+      id              SERIAL          PRIMARY KEY NOT NULL,
+      user_id         INT             NOT NULL,
       modified        DATE            NOT NULL,
       created         DATE            NOT NULL,
-      FOREIGN KEY (userId) REFERENCES users(id)
+      FOREIGN KEY (user_id) REFERENCES users(id)
     );
   `;
 
   const cartItemsTableStmt = `
-    CREATE TABLE IF NOT EXISTS cartItem (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      cartId          INT             NOT NULL,
-      FOREIGN KEY (cartId) REFERENCES carts(id),
+    CREATE TABLE IF NOT EXISTS cart_items (
+      id              SERIAL          PRIMARY KEY NOT NULL,
+      cart_id         INT             NOT NULL,
+      product_id      INT             NOT NULL,
+      quantity        INT             NOT NULL,
+      FOREIGN KEY (cart_id) REFERENCES carts(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
     );
   `;
 

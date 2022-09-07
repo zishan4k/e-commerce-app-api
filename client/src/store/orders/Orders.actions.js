@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchOrder, fetchOrders } from '../../apis/order';
+import { fetchOrder, fetchOrders } from '../../apis/orders';
 
 export const loadOrder = createAsyncThunk(
   'orders/loadOrder',

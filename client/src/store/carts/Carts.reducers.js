@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { checkLoginStatus } from '../auth/Auth.actions';
-import { addItem, checkoutCart, loadCart, removeItem } from './Cart.actions';
+import { addItem, checkoutCart, loadCart, removeItem } from './Carts.actions';
 
 const initialState = { items: [] };
 
-const cartSlice = createSlice({
-  name: 'cart',
+const cartsSlice = createSlice({
+  name: 'carts',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -32,4 +32,4 @@ const cartSlice = createSlice({
   },
 });
 
-export default cartSlice.reducer;
+export default cartsSlice.reducer;

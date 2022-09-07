@@ -44,14 +44,18 @@ module.exports = (app, passport) => {
 
   router.post('/mycart/items', async (req, res, next) => {
     try {
-      console.log(req.user); // need to sort out user verfifcation
       console.log(req.body);
-      const { id } = req.user;
-      const data = req.body;
-
-      const response = await CartServiceInstance.addItem(id, data);
-
+      const { user, ...data } = req.body;
+      const { id } = user;
+      let response = await CartServiceInstance.addItem(id, data);
+      if (!response) {
+        await CartServiceInstance.create({ userId: id });
+        response = await CartServiceInstance.addItem(id, data);
+        return response;
+      }
       res.status(200).send(response);
+
+      console.log('successfully added new item to cart');
     } catch (err) {
       next(err);
     }

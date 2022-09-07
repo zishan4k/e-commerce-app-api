@@ -6,10 +6,13 @@ import { Button, Divider, Typography } from '@mui/material';
 import './Cart.css';
 
 const Cart = () => {
-  const { items } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.carts);
+  console.log(items);
+
   const calculateTotal = () => {
     return items.reduce((total, { price, quantity }) => {
-      return (total += price * quantity);
+      let intPrice = parseInt(price);
+      return (total += intPrice * quantity);
     }, 0);
   };
 
@@ -29,7 +32,8 @@ const Cart = () => {
           </div>
         </div>
         {items.map((item) => {
-          return <CartItemCard {...item} />;
+          const { cartItemId, ...data } = item;
+          return <CartItemCard key={cartItemId} {...data} />;
         })}
       </div>
       <div className="cart-summary-container">

@@ -27,10 +27,10 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials, thunkAPI) => {
     try {
-      console.log('before auth.action response');
+      // console.log('before auth.action response');
       const response = await login(credentials);
-      console.log('after auth.action response');
-      console.log(response);
+      // console.log('after auth.action response');
+      // console.log(response);
       return {
         user: response,
         isAuthenticated: true,
